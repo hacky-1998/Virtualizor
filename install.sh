@@ -8,7 +8,7 @@ setenforce 0 >> /dev/null 2>&1
 #iptables -P INPUT ACCEPT >> /dev/null 2>&1
 
 #FILEREPO=http://files.virtualizor.com
-FILEREPO=https://raw.githubusercontent.com/janovas/Virtualizor/master
+FILEREPO=https://raw.githubusercontent.com/hacky-1998/Virtualizor/master
 LOG=/root/virtualizor.log
 
 #----------------------------------
@@ -54,8 +54,8 @@ if [ "$OS" = Ubuntu ] ; then
 	
 		VER=$(lsb_release -r | cut -f2)
 		
-		if  [ "$VER" != "12.04" -a "$VER" != "14.04" -a "$VER" != "16.04" ]; then
-			echo "Softaculous Virtualizor only supports Ubuntu 12.04 LTS, Ubuntu 14.04 LTS and Ubuntu 16.04 LTS"
+		if  [ "$VER" != "12.04" -a "$VER" != "14.04" -a "$VER" != "16.04 != "18.04" ]; then
+			echo "Softaculous Virtualizor only supports Ubuntu 12.04 LTS, Ubuntu 14.04 LTS, Ubuntu 16.04 LTS and Ubuntu 18.04 LTS"
 			echo "Exiting installer"
 			exit 1;
 		fi
