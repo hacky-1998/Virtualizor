@@ -1,4 +1,40 @@
+#!/bin/bash
+clear
 
+setenforce 0 >> /dev/null 2>&1
+
+# Flush the IP Tables
+#iptables -F >> /dev/null 2>&1
+#iptables -P INPUT ACCEPT >> /dev/null 2>&1
+
+#FILEREPO=http://files.virtualizor.com
+FILEREPO=https://raw.githubusercontent.com/janovas/Virtualizor/master
+LOG=/root/virtualizor.log
+
+#----------------------------------
+# Detecting the Architecture
+#----------------------------------
+if ([ `uname -i` == x86_64 ] || [ `uname -m` == x86_64 ]); then
+	ARCH=64
+else
+	ARCH=32
+fi
+
+echo "-----------------------------------------------"
+echo " Welcome to Softaculous Virtualizor Installer"
+echo "-----------------------------------------------"
+echo " "
+
+
+#----------------------------------
+# Some checks before we proceed
+#----------------------------------
+
+# Gets Distro type.
+if [ -d /etc/pve ]; then
+	OS=Proxmox
+	REL=$(/usr/bin/pveversion)
+elif [ -f /etc/debian_version ]; then	
 	OS_ACTUAL=$(lsb_release -i | cut -f2)
 	OS=Ubuntu
 	REL=$(cat /etc/issue)
@@ -18,7 +54,7 @@ if [ "$OS" = Ubuntu ] ; then
 	
 		VER=$(lsb_release -r | cut -f2)
 		
-		if  [ "$VER" != "12.04" -a "$VER" != "14.04" -a "$VER" != "16.04" ]; then
+		if  [ "$VER" != "12.04" -a "$VER" != "14.04" -a "$VER" != "18.04" ]; then
 			echo "Softaculous Virtualizor only supports Ubuntu 12.04 LTS, Ubuntu 14.04 LTS and Ubuntu 16.04 LTS"
 			echo "Exiting installer"
 			exit 1;
