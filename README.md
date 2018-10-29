@@ -1,6 +1,8 @@
 # Virtualizor
 Virtualizor VPS Control Panel
 
+## Has been Fixed Check for Ubuntu 18.04 LTS!
+
 1. Install virtualizor from the official site.
 ```
 wget --no-check-certificate https://raw.githubusercontent.com/hacky-1998/Virtualizor/master/install.sh -O install.sh; chmod 755 install.sh;./install.sh email=your@email.com kernel=xen 2>&1|tee install.log
